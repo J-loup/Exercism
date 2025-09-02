@@ -1,0 +1,25 @@
+public static class SimpleCalculator
+{
+    public static string Calculate(int operand1, int operand2, string? operation)
+    {
+        switch(operation)
+        {
+            case "+": return $"{operand1} + {operand2} = {operand1+operand2}";
+            case "*": return $"{operand1} * {operand2} = {operand1*operand2}";
+            case "/":
+            {
+                try
+                {
+                    return $"{operand1} / {operand2} = {operand1/operand2}";
+                }
+                catch (DivideByZeroException e)
+                {
+                    return "Division by zero is not allowed.";
+                }
+            }
+            case "": throw new ArgumentException();
+            case null: throw new ArgumentNullException();
+            default: throw new ArgumentOutOfRangeException();
+        }
+    }
+}
